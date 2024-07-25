@@ -1,8 +1,18 @@
-public class MyLinkedList<T> {
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.function.Consumer;
+
+public class MyLinkedList<T> implements Iterable<T> {
 
     private Node<T> start;
     private Node<T> last;
     private int length;
+
+    public void setStart(Node<T> start) {
+        this.start = start;
+    }
 
     public MyLinkedList() {
         this.start = null;
@@ -54,6 +64,12 @@ public class MyLinkedList<T> {
             target = target.getNext();
         }
         return target;
+    }
+
+
+    @Override
+    public Iterator<T> iterator() {
+        return null;
     }
 }
 

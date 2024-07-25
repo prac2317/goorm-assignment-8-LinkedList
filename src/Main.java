@@ -27,5 +27,30 @@ public class Main {
         System.out.println(myLinkedList.get(2)); // 3
         myLinkedList.delete(1); // 첫번째 제거 [3]
         System.out.println(myLinkedList.get(1)); // 3
+
+//        System.out.println("[for-each 순회 테스트]");
+//        for (Integer i : myLinkedList) {
+//            System.out.println(i);
+//        }
+
+
+        System.out.println("[stack 테스트]");
+        Stack<Integer> stack = new Stack<>();
+        stack.push(3);
+        stack.push(5);
+        stack.push(7);
+        System.out.println(stack.pop());
+        System.out.println(stack.pop());
+        System.out.println(stack.pop());
+
+        System.out.println("[queue 테스트]");
+        Queue<Integer> queue = new Queue<>();
+        queue.add(3);
+        queue.add(5);
+        queue.add(7);
+        System.out.println(queue.poll());
+        System.out.println(queue.poll());
+        System.out.println(queue.poll());
+
     }
 }
