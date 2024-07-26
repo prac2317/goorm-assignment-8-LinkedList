@@ -1,4 +1,5 @@
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class MyLinkedList<T> implements Iterable<T> {
 
@@ -50,7 +51,8 @@ public class MyLinkedList<T> implements Iterable<T> {
 
         // index가 0일 경우, 마지막일 경우, 0과 마지막 사이에 있을 경우 3가지로 구분
         if (index == size-1) {
-            getIndexNode(index).setNext(null);
+            last = getIndexNode(index-1);
+            last.setNext(null);
         } else if (index == 0){
             head = getIndexNode(1);
         } else {
@@ -60,10 +62,29 @@ public class MyLinkedList<T> implements Iterable<T> {
         size--;
     }
 
-
     @Override
     public Iterator<T> iterator() {
-        return null;
+        return new LinkedListIterator();
     }
+
+    private class LinkedListIterator implements Iterator<T> {
+        private Node<T> current = head;
+
+        @Override
+        public boolean hasNext() {
+            return current != null;
+        }
+
+        @Override
+        public T next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            T data = current.getData();
+            current = current.getNext();
+            return data;
+        }
+    }
+
 }
 

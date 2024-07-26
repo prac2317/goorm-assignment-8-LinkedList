@@ -28,11 +28,13 @@ public class Main {
         myLinkedList.delete(0); // 첫번째 제거 [3]
         System.out.println(myLinkedList.get(0)); // 3
 
-//        System.out.println("[for-each 순회 테스트]");
-//        for (Integer i : myLinkedList) {
-//            System.out.println(i);
-//        }
 
+        System.out.println("[for-each 순회 테스트]");
+        myLinkedList.add(5);
+        for (Integer i : myLinkedList) {
+            System.out.println(i);
+        }
+        // 3, 5
 
         System.out.println("[stack 테스트]");
         Stack<Integer> stack = new Stack<>();
