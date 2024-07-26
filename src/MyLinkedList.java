@@ -1,69 +1,63 @@
-import java.util.Collection;
 import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.function.Consumer;
 
 public class MyLinkedList<T> implements Iterable<T> {
 
-    private Node<T> start;
+    private Node<T> head;
     private Node<T> last;
-    private int length;
+    private int size;
 
-    public void setStart(Node<T> start) {
-        this.start = start;
+    public int getSize() {
+        return size;
     }
 
     public MyLinkedList() {
-        this.start = null;
+        this.head = null;
         this.last = null;
-        this.length = 0;
+        this.size = 0;
     }
 
     public void add(T data) {
         Node<T> newNode = new Node<>(data);
-        if (start == null) {
-            start = newNode;
+        if (head == null) {
+            head = newNode;
             last = newNode;
         } else {
             last.setNext(newNode);
             last = newNode;
         }
-        length++;
+        size++;
+    }
+
+    public Node<T> getIndexNode(int index){
+        Node<T> target = head;
+        for (int i = 0; i < index; i++) {
+            target = target.getNext();
+        }
+        return target;
     }
 
     public T get(int index) {
-        if (index > length || index < 1) {
-            System.out.println("해당 index가 존재하지 않습니다.");
-            return null;
+        if (index > size-1 || index < 0) {
+            throw new IndexOutOfBoundsException();
         }
         return getIndexNode(index).getData();
     }
 
     public void delete(int index) {
-        if (index > length || index < 1) {
-            System.out.println("해당 index가 존재하지 않습니다.");
-            return;
+        if (index > size-1 || index < 0) {
+            throw new IndexOutOfBoundsException();
         }
 
-        // index가 1일 경우, 마지막일 경우, 1과 마지막 사이에 있을 경우 3가지로 구분
-        if (index == length) {
-            getIndexNode(index-1).setNext(null);
-        } else if (index == 1){
-            start = getIndexNode(2);
+        // index가 0일 경우, 마지막일 경우, 0과 마지막 사이에 있을 경우 3가지로 구분
+        if (index == size-1) {
+            getIndexNode(index).setNext(null);
+        } else if (index == 0){
+            head = getIndexNode(1);
         } else {
             getIndexNode(index-1).setNext(getIndexNode(index+1));
         }
 
-        length--;
-    }
-
-    public Node<T> getIndexNode(int index){
-        Node<T> target = start;
-        for (int i = 0; i < index-1; i++) {
-            target = target.getNext();
-        }
-        return target;
+        size--;
     }
 
 

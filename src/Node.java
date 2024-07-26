@@ -1,5 +1,3 @@
-import java.util.LinkedList;
-
 public class Node<T> {
 
     private T data;
@@ -11,10 +9,6 @@ public class Node<T> {
 
     public T getData() {
         return data;
-    }
-
-    public void setData(T data) {
-        this.data = data;
     }
 
     public Node<T> getNext() {
